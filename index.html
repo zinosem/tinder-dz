@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>LoveDZ - Rencontres en Algérie 💕</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="L'application de rencontres n°1 en Algérie. Trouve l'amour près de chez toi!">
+    <meta name="theme-color" content="#ff6b6b">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="LoveDZ">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-TileColor" content="#ff6b6b">
+    <meta name="msapplication-tap-highlight" content="no">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="icons/icon-152x152.png">
+    
+    <!-- Splash Screens pour iPhone -->
+    <link rel="apple-touch-startup-image" href="icons/splash-640x1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)">
+    <link rel="apple-touch-startup-image" href="icons/splash-750x1334.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)">
+    <link rel="apple-touch-startup-image" href="icons/splash-1242x2208.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)">
+    <link rel="apple-touch-startup-image" href="icons/splash-1125x2436.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)">
+    <link rel="apple-touch-startup-image" href="icons/splash-1284x2778.png" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3)">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-72x72.png">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <div class="logo-animation">
+                <i class="fas fa-heart"></i>
+            </div>
+            <h1>LoveDZ</h1>
+            <p>L'amour à l'algérienne</p>
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <!-- Landing Page -->
+    <div id="landing-page" class="page hidden">
+        <div class="landing-container">
+            <nav class="landing-nav">
+                <div class="logo">
+                    <i class="fas fa-heart"></i>
+                    <span>LoveDZ</span>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-outline" onclick="showPage('login-page')">Connexion</button>
+                    <button class="btn btn-primary" onclick="showPage('register-page')">Inscription</button>
+                </div>
+            </nav>
+
+            <main class="landing-main">
+                <div class="hero-content">
+                    <h1>Trouve l'amour <span class="gradient-text">en Algérie</span></h1>
+                    <p>Rejoins des milliers de célibataires algériens qui cherchent l'amour, l'amitié ou simplement des rencontres.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary btn-large" onclick="showPage('register-page')">
+                            <i class="fas fa-rocket"></i> Commencer gratuitement
+                        </button>
+                    </div>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-number">50K+</span>
+                            <span class="stat-label">Membres actifs</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">48</span>
+                            <span class="stat-label">Wilayas</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">10K+</span>
+                            <span class="stat-label">Matchs/jour</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="demo-card">
+                                <div class="demo-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="demo-info">
+                                    <h3>Sarah, 25</h3>
+                                    <p><i class="fas fa-map-marker-alt"></i> Alger</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <section class="features">
+                <h2>Pourquoi choisir LoveDZ ?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>100% Sécurisé</h3>
+                        <p>Profils vérifiés et données protégées</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3>Près de chez toi</h3>
+                        <p>Trouve des célibataires dans ta wilaya</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Chat instantané</h3>
+                        <p>Discute en temps réel avec tes matchs</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Gratuit</h3>
+                        <p>Toutes les fonctionnalités de base gratuites</p>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="landing-footer">
+                <p>&copy; 2026 LoveDZ - Fait avec <i class="fas fa-heart"></i> en Algérie</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login-page" class="page hidden">
+        <div class="auth-container">
+            <button class="btn-back" onclick="showPage('landing-page')">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="auth-card">
+                <div class="auth-header">
+                    <i class="fas fa-heart logo-icon"></i>
+                    <h1>Bon retour!</h1>
+                    <p>Connecte-toi pour retrouver tes matchs</p>
+                </div>
+                <form id="login-form" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <div class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="login-email" placeholder="ton@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Mot de passe</label>
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="login-password" placeholder="••••••••" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('login-password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <a href="#" class="forgot-password">Mot de passe oublié?</a>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-sign-in-alt"></i> Se connecter
+                    </button>
+                </form>
+                <div class="auth-footer">
+                    <p>Pas encore de compte? <a href="#" onclick="showPage('register-page')">Inscris-toi</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Page -->
+    <div id="register-page" class="page hidden">
+        <div class="auth-container">
+            <button class="btn-back" onclick="showPage('landing-page')">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="auth-card">
+                <div class="auth-header">
+                    <i class="fas fa-heart logo-icon"></i>
+                    <h1>Créer un compte</h1>
+                    <p>Rejoins la communauté LoveDZ</p>
+                </div>
+                <form id="register-form" onsubmit="handleRegister(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="register-firstname">Prénom</label>
+                            <div class="input-icon">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="register-firstname" placeholder="Ton prénom" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-age">Âge</label>
+                            <div class="input-icon">
+                                <i class="fas fa-birthday-cake"></i>
+                                <input type="number" id="register-age" placeholder="25" min="18" max="99" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <div class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="register-email" placeholder="ton@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-wilaya">Wilaya</label>
+                        <div class="input-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <select id="register-wilaya" required>
+                                <option value="">Sélectionne ta wilaya</option>
+                                <option value="Alger">Alger</option>
+                                <option value="Oran">Oran</option>
+                                <option value="Constantine">Constantine</option>
+                                <option value="Annaba">Annaba</option>
+                                <option value="Blida">Blida</option>
+                                <option value="Batna">Batna</option>
+                                <option value="Djelfa">Djelfa</option>
+                                <option value="Sétif">Sétif</option>
+                                <option value="Sidi Bel Abbès">Sidi Bel Abbès</option>
+                                <option value="Biskra">Biskra</option>
+                                <option value="Tébessa">Tébessa</option>
+                                <option value="Tlemcen">Tlemcen</option>
+                                <option value="Béjaïa">Béjaïa</option>
+                                <option value="Tiaret">Tiaret</option>
+                                <option value="Tizi Ouzou">Tizi Ouzou</option>
+                                <option value="Bordj Bou Arreridj">Bordj Bou Arreridj</option>
+                                <option value="Boumerdès">Boumerdès</option>
+                                <option value="El Oued">El Oued</option>
+                                <option value="Chlef">Chlef</option>
+                                <option value="Médéa">Médéa</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Genre</label>
+                        <div class="gender-select">
+                            <input type="radio" id="gender-male" name="gender" value="male" required>
+                            <label for="gender-male" class="gender-option">
+                                <i class="fas fa-mars"></i> Homme
+                            </label>
+                            <input type="radio" id="gender-female" name="gender" value="female">
+                            <label for="gender-female" class="gender-option">
+                                <i class="fas fa-venus"></i> Femme
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Mot de passe</label>
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="register-password" placeholder="••••••••" required minlength="6">
+                            <button type="button" class="toggle-password" onclick="togglePassword('register-password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">J'accepte les <a href="#">conditions d'utilisation</a></label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-user-plus"></i> Créer mon compte
+                    </button>
+                </form>
+                <div class="auth-footer">
+                    <p>Déjà un compte? <a href="#" onclick="showPage('login-page')">Connecte-toi</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app-page" class="page hidden">
+        <div class="app-container">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="header-left">
+                    <i class="fas fa-heart"></i>
+                    <span>LoveDZ</span>
+                </div>
+                <div class="header-right">
+                    <button class="header-btn notification-btn" onclick="showNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <button class="header-btn" onclick="showPage('profile-page')">
+                        <div class="header-avatar" id="header-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="app-main">
+                <!-- Card Stack -->
+                <div class="card-stack" id="card-stack">
+                    <!-- Cards will be generated by JavaScript -->
+                </div>
+
+                <!-- No More Cards -->
+                <div class="no-cards hidden" id="no-cards">
+                    <i class="fas fa-search"></i>
+                    <h2>Plus de profils</h2>
+                    <p>Tu as vu tous les profils disponibles. Reviens plus tard!</p>
+                    <button class="btn btn-primary" onclick="resetCards()">
+                        <i class="fas fa-redo"></i> Recommencer
+                    </button>
+                </div>
+            </main>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="action-btn rewind-btn" onclick="rewindCard()">
+                    <i class="fas fa-undo"></i>
+                </button>
+                <button class="action-btn dislike-btn" onclick="swipeLeft()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button class="action-btn superlike-btn" onclick="superLike()">
+                    <i class="fas fa-star"></i>
+                </button>
+                <button class="action-btn like-btn" onclick="swipeRight()">
+                    <i class="fas fa-heart"></i>
+                </button>
+                <button class="action-btn boost-btn" onclick="boostProfile()">
+                    <i class="fas fa-bolt"></i>
+                </button>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <nav class="bottom-nav">
+                <button class="nav-item active" onclick="switchTab('discover')">
+                    <i class="fas fa-fire"></i>
+                    <span>Découvrir</span>
+                </button>
+                <button class="nav-item" onclick="showPage('likes-page')">
+                    <i class="fas fa-star"></i>
+                    <span>Likes</span>
+                    <span class="nav-badge">12</span>
+                </button>
+                <button class="nav-item" onclick="showPage('messages-page')">
+                    <i class="fas fa-comment"></i>
+                    <span>Messages</span>
+                    <span class="nav-badge">5</span>
+                </button>
+                <button class="nav-item" onclick="showPage('profile-page')">
+                    <i class="fas fa-user"></i>
+                    <span>Profil</span>
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Profile Page -->
+    <div id="profile-page" class="page hidden">
+        <div class="profile-container">
+            <header class="profile-header">
+                <button class="btn-back" onclick="showPage('app-page')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>Mon Profil</h1>
+                <button class="btn-settings" onclick="showSettings()">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </header>
+
+            <div class="profile-content">
+                <div class="profile-card">
+                    <div class="profile-avatar-container">
+                        <div class="profile-avatar" id="profile-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <button class="edit-avatar-btn">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    <h2 id="profile-name">Utilisateur</h2>
+                    <p class="profile-location"><i class="fas fa-map-marker-alt"></i> <span id="profile-location">Algérie</span></p>
+                    <div class="profile-completion">
+                        <span>Profil complété à 70%</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 70%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h3><i class="fas fa-edit"></i> À propos de moi</h3>
+                    <textarea id="profile-bio" placeholder="Décris-toi en quelques mots..."></textarea>
+                </div>
+
+                <div class="profile-section">
+                    <h3><i class="fas fa-heart"></i> Intérêts</h3>
+                    <div class="interests-grid" id="interests-grid">
+                        <span class="interest-tag" data-interest="sport">⚽ Sport</span>
+                        <span class="interest-tag" data-interest="music">🎵 Musique</span>
+                        <span class="interest-tag" data-interest="travel">✈️ Voyage</span>
+                        <span class="interest-tag" data-interest="food">🍕 Cuisine</span>
+                        <span class="interest-tag" data-interest="movies">🎬 Cinéma</span>
+                        <span class="interest-tag" data-interest="books">📚 Lecture</span>
+                        <span class="interest-tag" data-interest="gaming">🎮 Gaming</span>
+                        <span class="interest-tag" data-interest="fitness">💪 Fitness</span>
+                        <span class="interest-tag" data-interest="art">🎨 Art</span>
+                        <span class="interest-tag" data-interest="nature">🌿 Nature</span>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h3><i class="fas fa-sliders-h"></i> Préférences</h3>
+                    <div class="preference-item">
+                        <label>Je cherche</label>
+                        <select id="looking-for">
+                            <option value="women">Des femmes</option>
+                            <option value="men">Des hommes</option>
+                            <option value="both">Les deux</option>
+                        </select>
+                    </div>
+                    <div class="preference-item">
+                        <label>Tranche d'âge</label>
+                        <div class="range-slider">
+                            <input type="range" id="age-min" min="18" max="60" value="18">
+                            <input type="range" id="age-max" min="18" max="60" value="35">
+                            <span id="age-range-display">18 - 35 ans</span>
+                        </div>
+                    </div>
+                    <div class="preference-item">
+                        <label>Distance maximale</label>
+                        <div class="range-slider">
+                            <input type="range" id="distance" min="5" max="100" value="50">
+                            <span id="distance-display">50 km</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-danger btn-full" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Messages Page -->
+    <div id="messages-page" class="page hidden">
+        <div class="messages-container">
+            <header class="messages-header">
+                <button class="btn-back" onclick="showPage('app-page')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>💬 Messages</h1>
+                <button class="btn-search" onclick="toggleMessageSearch()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </header>
+
+            <!-- Search Bar -->
+            <div class="messages-search" id="messages-search" style="display: none;">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Rechercher une conversation..." id="search-conversation-input">
+                </div>
+            </div>
+
+            <!-- New Matches -->
+            <div class="new-matches-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-fire"></i> Nouveaux matchs</h3>
+                    <span class="see-all" onclick="showPage('likes-page')">Voir tout</span>
+                </div>
+                <div class="matches-scroll" id="matches-scroll">
+                    <!-- Matches will be generated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Status Tabs -->
+            <div class="status-tabs">
+                <button class="status-tab active" onclick="filterMessages('all')">
+                    Tous
+                </button>
+                <button class="status-tab" onclick="filterMessages('online')">
+                    <span class="dot"></span> En ligne
+                </button>
+                <button class="status-tab" onclick="filterMessages('unread')">
+                    Non lus
+                </button>
+            </div>
+
+            <!-- Conversations -->
+            <div class="conversations-section">
+                <h3><i class="fas fa-comments"></i> Conversations</h3>
+                <div class="conversations-list" id="conversations-list">
+                    <!-- Conversations will be generated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Page -->
+    <!-- Chat Page -->
+    <div id="chat-page" class="page hidden">
+        <div class="chat-container">
+            <header class="chat-header">
+                <button class="btn-back" onclick="showPage('messages-page')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="chat-user-info" onclick="viewChatProfile()">
+                    <div class="chat-avatar" id="chat-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="chat-user-details">
+                        <h3 id="chat-name">Utilisateur</h3>
+                        <span class="online-status" id="chat-status">En ligne</span>
+                    </div>
+                </div>
+                <button class="btn-more" onclick="showChatOptions()">
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
+            </header>
+
+            <div class="chat-messages" id="chat-messages">
+                <!-- Messages will be generated by JavaScript -->
+            </div>
+
+            <div class="chat-input-container">
+                <button class="chat-action-btn" onclick="showAttachmentOptions()">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="chat-input-wrapper">
+                    <input type="text" id="chat-input" placeholder="Écris un message..." onkeypress="handleChatKeypress(event)">
+                    <button class="emoji-btn" onclick="showEmojiPicker()">
+                        <i class="fas fa-smile"></i>
+                    </button>
+                </div>
+                <button class="send-btn" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Likes Page -->
+    <div id="likes-page" class="page hidden">
+        <div class="likes-container">
+            <header class="likes-header">
+                <button class="btn-back" onclick="showPage('app-page')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>Qui t'aime 💕</h1>
+                <div class="likes-count-badge">12</div>
+            </header>
+
+            <!-- Premium Banner -->
+            <div class="premium-banner">
+                <div class="premium-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="premium-text">
+                    <h3>Passe à LoveDZ Gold</h3>
+                    <p>Vois qui t'a liké et matche instantanément!</p>
+                </div>
+                <button class="btn btn-gold" onclick="showPremiumModal()">
+                    <i class="fas fa-unlock"></i> Débloquer
+                </button>
+            </div>
+
+            <!-- Likes Tabs -->
+            <div class="likes-tabs">
+                <button class="likes-tab active" onclick="switchLikesTab('received')">
+                    <i class="fas fa-heart"></i>
+                    <span>Reçus</span>
+                    <span class="tab-count">12</span>
+                </button>
+                <button class="likes-tab" onclick="switchLikesTab('sent')">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Envoyés</span>
+                    <span class="tab-count">8</span>
+                </button>
+                <button class="likes-tab" onclick="switchLikesTab('superlikes')">
+                    <i class="fas fa-star"></i>
+                    <span>Super Likes</span>
+                    <span class="tab-count">3</span>
+                </button>
+            </div>
+
+            <!-- Likes Grid -->
+            <div class="likes-content">
+                <div class="likes-grid" id="likes-grid">
+                    <!-- Likes will be generated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="likes-empty hidden" id="likes-empty">
+                <i class="fas fa-heart-broken"></i>
+                <h2>Pas encore de likes</h2>
+                <p>Continue à swiper pour recevoir plus de likes!</p>
+                <button class="btn btn-primary" onclick="showPage('app-page')">
+                    <i class="fas fa-fire"></i> Découvrir des profils
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Premium Modal -->
+    <div id="premium-modal" class="modal hidden">
+        <div class="modal-content premium-content">
+            <button class="modal-close" onclick="closePremiumModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="premium-modal-header">
+                <i class="fas fa-crown"></i>
+                <h1>LoveDZ Gold</h1>
+                <p>Débloquez toutes les fonctionnalités premium</p>
+            </div>
+            <div class="premium-features">
+                <div class="premium-feature">
+                    <i class="fas fa-eye"></i>
+                    <span>Voir qui t'a liké</span>
+                </div>
+                <div class="premium-feature">
+                    <i class="fas fa-infinity"></i>
+                    <span>Likes illimités</span>
+                </div>
+                <div class="premium-feature">
+                    <i class="fas fa-undo"></i>
+                    <span>Retours illimités</span>
+                </div>
+                <div class="premium-feature">
+                    <i class="fas fa-bolt"></i>
+                    <span>5 Super Likes par jour</span>
+                </div>
+                <div class="premium-feature">
+                    <i class="fas fa-globe-africa"></i>
+                    <span>Changer de localisation</span>
+                </div>
+                <div class="premium-feature">
+                    <i class="fas fa-ad"></i>
+                    <span>Sans publicités</span>
+                </div>
+            </div>
+            <div class="premium-plans">
+                <div class="premium-plan" onclick="selectPlan(this)">
+                    <span class="plan-duration">1 mois</span>
+                    <span class="plan-price">990 DA</span>
+                    <span class="plan-per">/mois</span>
+                </div>
+                <div class="premium-plan popular" onclick="selectPlan(this)">
+                    <span class="plan-badge">Populaire</span>
+                    <span class="plan-duration">6 mois</span>
+                    <span class="plan-price">590 DA</span>
+                    <span class="plan-per">/mois</span>
+                    <span class="plan-save">Économise 40%</span>
+                </div>
+                <div class="premium-plan" onclick="selectPlan(this)">
+                    <span class="plan-duration">12 mois</span>
+                    <span class="plan-price">490 DA</span>
+                    <span class="plan-per">/mois</span>
+                    <span class="plan-save">Économise 50%</span>
+                </div>
+            </div>
+            <button class="btn btn-gold btn-full" onclick="subscribePremium()">
+                <i class="fas fa-crown"></i> Devenir Gold
+            </button>
+            <p class="premium-disclaimer">Annulation possible à tout moment</p>
+        </div>
+    </div>
+
+    <!-- Match Modal -->
+    <div id="match-modal" class="modal hidden">
+        <div class="modal-content match-content">
+            <div class="match-animation">
+                <div class="hearts-animation">
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h1>C'est un Match! 💕</h1>
+                <p>Toi et <span id="match-name">Sarah</span> vous êtes likés mutuellement!</p>
+                <div class="match-avatars">
+                    <div class="match-avatar" id="match-avatar-me">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="match-heart">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="match-avatar" id="match-avatar-them">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="match-actions">
+                    <button class="btn btn-primary" onclick="openChatFromMatch()">
+                        <i class="fas fa-comment"></i> Envoyer un message
+                    </button>
+                    <button class="btn btn-outline" onclick="closeMatchModal()">
+                        Continuer à swiper
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

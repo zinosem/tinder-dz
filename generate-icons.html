@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur d'Icônes LoveDZ</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px;
+            color: white;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { text-align: center; margin-bottom: 30px; }
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .icon-item {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+        canvas { display: block; margin: 0 auto 10px; border-radius: 20%; }
+        .size { color: #333; font-weight: bold; }
+        .download-btn {
+            display: block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .instructions {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 30px;
+        }
+        .instructions h2 { margin-bottom: 15px; }
+        .instructions ol { padding-left: 20px; }
+        .instructions li { margin-bottom: 10px; line-height: 1.6; }
+        code {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Générateur d'Icônes LoveDZ</h1>
+        <p style="text-align: center; margin-bottom: 30px;">Télécharge toutes les icônes et place-les dans le dossier <code>icons/</code></p>
+        
+        <div class="icon-grid" id="icons"></div>
+        
+        <button onclick="downloadAll()" style="display: block; margin: 20px auto; padding: 15px 40px; font-size: 18px; background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%); color: white; border: none; border-radius: 30px; cursor: pointer; font-weight: bold;">
+            📥 Télécharger Toutes les Icônes
+        </button>
+
+        <div class="instructions">
+            <h2>📱 Comment installer sur iPhone</h2>
+            <ol>
+                <li><strong>Héberger l'app</strong> - Tu dois mettre ton app sur un serveur HTTPS (gratuit avec GitHub Pages, Netlify, ou Vercel)</li>
+                <li><strong>Sur ton iPhone</strong>, ouvre Safari et va sur l'URL de ton app</li>
+                <li>Appuie sur le bouton <strong>Partager</strong> (carré avec flèche vers le haut)</li>
+                <li>Fais défiler et appuie sur <strong>"Sur l'écran d'accueil"</strong></li>
+                <li>Donne un nom à l'app et appuie sur <strong>Ajouter</strong></li>
+                <li>🎉 L'app apparaît sur ton écran d'accueil comme une vraie app!</li>
+            </ol>
+            
+            <h2 style="margin-top: 25px;">🚀 Hébergement gratuit avec GitHub Pages</h2>
+            <ol>
+                <li>Crée un compte sur <a href="https://github.com" style="color: #feca57;">github.com</a></li>
+                <li>Crée un nouveau repository (ex: "lovedz")</li>
+                <li>Upload tous tes fichiers</li>
+                <li>Va dans Settings → Pages → Sélectionne "main" branch</li>
+                <li>Ton app sera accessible sur <code>https://tonpseudo.github.io/lovedz</code></li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+        
+        function createIcon(size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#ff6b6b');
+            gradient.addColorStop(1, '#feca57');
+            
+            // Rounded rectangle
+            const radius = size * 0.22;
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, radius);
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            
+            // Heart
+            ctx.fillStyle = 'white';
+            const heartSize = size * 0.5;
+            const x = size / 2;
+            const y = size / 2 + heartSize * 0.05;
+            
+            ctx.beginPath();
+            ctx.moveTo(x, y + heartSize * 0.3);
+            ctx.bezierCurveTo(x, y + heartSize * 0.3, x - heartSize * 0.5, y, x - heartSize * 0.5, y - heartSize * 0.2);
+            ctx.bezierCurveTo(x - heartSize * 0.5, y - heartSize * 0.5, x, y - heartSize * 0.5, x, y - heartSize * 0.2);
+            ctx.bezierCurveTo(x, y - heartSize * 0.5, x + heartSize * 0.5, y - heartSize * 0.5, x + heartSize * 0.5, y - heartSize * 0.2);
+            ctx.bezierCurveTo(x + heartSize * 0.5, y, x, y + heartSize * 0.3, x, y + heartSize * 0.3);
+            ctx.fill();
+            
+            return canvas;
+        }
+        
+        function init() {
+            const container = document.getElementById('icons');
+            
+            sizes.forEach(size => {
+                const div = document.createElement('div');
+                div.className = 'icon-item';
+                
+                const canvas = createIcon(size);
+                canvas.style.width = Math.min(size, 100) + 'px';
+                canvas.style.height = Math.min(size, 100) + 'px';
+                
+                const sizeLabel = document.createElement('div');
+                sizeLabel.className = 'size';
+                sizeLabel.textContent = `${size}x${size}`;
+                
+                const btn = document.createElement('button');
+                btn.className = 'download-btn';
+                btn.textContent = '📥 Télécharger';
+                btn.onclick = () => downloadIcon(canvas, size);
+                
+                div.appendChild(canvas);
+                div.appendChild(sizeLabel);
+                div.appendChild(btn);
+                container.appendChild(div);
+            });
+        }
+        
+        function downloadIcon(canvas, size) {
+            const link = document.createElement('a');
+            link.download = `icon-${size}x${size}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        function downloadAll() {
+            sizes.forEach((size, index) => {
+                setTimeout(() => {
+                    const canvas = createIcon(size);
+                    downloadIcon(canvas, size);
+                }, index * 300);
+            });
+        }
+        
+        init();
+    </script>
+</body>
+</html>

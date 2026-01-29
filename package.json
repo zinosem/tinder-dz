@@ -1,0 +1,28 @@
+{
+  "name": "lovedz",
+  "version": "1.0.0",
+  "description": "L'application de rencontres n°1 en Algérie",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'No build step needed'",
+    "cap:init": "npx cap init LoveDZ com.lovedz.app --web-dir .",
+    "cap:add:ios": "npx cap add ios",
+    "cap:add:android": "npx cap add android",
+    "cap:sync": "npx cap sync",
+    "cap:open:ios": "npx cap open ios",
+    "cap:open:android": "npx cap open android"
+  },
+  "keywords": ["dating", "algeria", "lovedz"],
+  "author": "LoveDZ Team",
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/core": "^5.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^5.0.0",
+    "@capacitor/ios": "^5.0.0",
+    "@capacitor/android": "^5.0.0",
+    "serve": "^14.0.0"
+  }
+}

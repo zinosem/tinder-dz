@@ -1,0 +1,88 @@
+{
+    "name": "LoveDZ - Rencontres en Algérie",
+    "short_name": "LoveDZ",
+    "description": "L'application de rencontres n°1 en Algérie. Trouve l'amour près de chez toi!",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#ff6b6b",
+    "theme_color": "#ff6b6b",
+    "orientation": "portrait",
+    "scope": "/",
+    "lang": "fr",
+    "categories": ["social", "lifestyle"],
+    "icons": [
+        {
+            "src": "icons/icon-72x72.png",
+            "sizes": "72x72",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "icons/icon-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "icons/icon-128x128.png",
+            "sizes": "128x128",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "icons/icon-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "icons/icon-152x152.png",
+            "sizes": "152x152",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "icons/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable any"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "screenshots/screenshot1.png",
+            "sizes": "1080x1920",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "Page d'accueil LoveDZ"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Messages",
+            "short_name": "Messages",
+            "description": "Voir mes conversations",
+            "url": "/index.html#messages",
+            "icons": [{ "src": "icons/message-icon.png", "sizes": "96x96" }]
+        },
+        {
+            "name": "Likes",
+            "short_name": "Likes",
+            "description": "Voir qui m'a liké",
+            "url": "/index.html#likes",
+            "icons": [{ "src": "icons/heart-icon.png", "sizes": "96x96" }]
+        }
+    ]
+}
