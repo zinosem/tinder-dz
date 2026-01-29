@@ -1,7 +1,7 @@
 {
   "appId": "com.lovedz.app",
   "appName": "LoveDZ",
-  "webDir": ".",
+  "webDir": "www",
   "server": {
     "androidScheme": "https"
   },
