@@ -176,13 +176,44 @@
                             </button>
                         </div>
                     </div>
-                    <a href="#" class="forgot-password">Mot de passe oublié?</a>
+                    <a href="#" class="forgot-password" onclick="showPage('forgot-password-page')">Mot de passe oublié?</a>
                     <button type="submit" class="btn btn-primary btn-full">
                         <i class="fas fa-sign-in-alt"></i> Se connecter
                     </button>
                 </form>
                 <div class="auth-footer">
                     <p>Pas encore de compte? <a href="#" onclick="showPage('register-page')">Inscris-toi</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Page -->
+    <div id="forgot-password-page" class="page hidden">
+        <div class="auth-container">
+            <button class="btn-back" onclick="showPage('login-page')">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="auth-card">
+                <div class="auth-header">
+                    <i class="fas fa-lock logo-icon"></i>
+                    <h1>Mot de passe oublié</h1>
+                    <p>Entre ton email pour recevoir un lien de réinitialisation</p>
+                </div>
+                <form id="forgot-form" onsubmit="handleForgotPassword(event)">
+                    <div class="form-group">
+                        <label for="forgot-email">Email</label>
+                        <div class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="forgot-email" placeholder="ton@email.com" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-paper-plane"></i> Envoyer le lien
+                    </button>
+                </form>
+                <div class="auth-footer">
+                    <p>Tu te souviens? <a href="#" onclick="showPage('login-page')">Connecte-toi</a></p>
                 </div>
             </div>
         </div>

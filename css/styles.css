@@ -3545,25 +3545,4 @@ button {
     }
 }
 
-/* Dark mode support for iOS */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-secondary: #1a1a2e;
-        --bg-primary: #16213e;
-        --text-primary: #ffffff;
-        --text-secondary: #b2bec3;
-    }
-    
-    .auth-card,
-    .message-item,
-    .like-card {
-        background: var(--bg-primary);
-    }
-    
-    .input-icon input,
-    .input-icon select {
-        background: var(--bg-secondary);
-        border-color: #2d3748;
-        color: var(--text-primary);
-    }
-}
+/* Dark mode désactivé */

@@ -245,6 +245,22 @@ function handleLogin(event) {
     }
 }
 
+function handleForgotPassword(event) {
+    event.preventDefault();
+    
+    const email = document.getElementById('forgot-email').value;
+    
+    if (email) {
+        // Simulation d'envoi d'email
+        showToast('Un email de réinitialisation a été envoyé à ' + email + ' 📧');
+        
+        // Retour à la page de connexion après 2 secondes
+        setTimeout(() => {
+            showPage('login-page');
+        }, 2000);
+    }
+}
+
 function handleRegister(event) {
     event.preventDefault();
     
