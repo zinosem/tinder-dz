@@ -448,6 +448,27 @@ body {
     cursor: pointer;
     box-shadow: var(--shadow);
     transition: all 0.3s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* btn-back inside headers should not be absolute */
+header .btn-back,
+.profile-header .btn-back,
+.messages-header .btn-back,
+.likes-header .btn-back,
+.chat-header .btn-back {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    flex-shrink: 0;
+    box-shadow: none;
+    background: var(--bg-secondary);
 }
 
 .btn-back:hover {
@@ -1375,17 +1396,19 @@ body {
 
 .profile-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
     background: var(--white);
     position: sticky;
     top: 0;
     z-index: 100;
+    gap: 15px;
 }
 
 .profile-header h1 {
     font-size: 18px;
+    flex: 1;
+    text-align: center;
 }
 
 .btn-settings {
@@ -2061,13 +2084,13 @@ body {
     padding: 15px 20px;
     background: var(--white);
     border-bottom: 1px solid #f0f0f0;
+    gap: 10px;
 }
 
 .chat-user-info {
     display: flex;
     align-items: center;
     flex: 1;
-    margin-left: 15px;
 }
 
 .chat-avatar {
@@ -2356,13 +2379,13 @@ body {
     background: var(--white);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     position: relative;
+    gap: 10px;
 }
 
 .chat-user-info {
     display: flex;
     align-items: center;
     flex: 1;
-    margin-left: 15px;
     cursor: pointer;
     padding: 8px;
     border-radius: 15px;
