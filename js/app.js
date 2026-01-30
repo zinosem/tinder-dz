@@ -191,6 +191,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialiser les likes de démo
     initializeDemoLikes();
+    
+    // Check premium status
+    checkPremiumStatus();
 });
 
 // ========================================
@@ -1368,11 +1371,36 @@ function selectPlan(element) {
 
 function subscribePremium() {
     appState.isPremium = true;
+    localStorage.setItem('isPremium', 'true');
     closePremiumModal();
     showToast('Bienvenue dans LoveDZ Gold! 👑');
+    
+    // Hide premium banner and show active banner
+    updatePremiumBanners();
     
     // Refresh likes grid to show unblurred profiles
     if (!document.getElementById('likes-page').classList.contains('hidden')) {
         generateLikesGrid('received');
     }
+}
+
+// Update premium banners visibility
+function updatePremiumBanners() {
+    const premiumBanner = document.getElementById('premium-banner');
+    const activeBanner = document.getElementById('premium-active-banner');
+    
+    if (appState.isPremium) {
+        if (premiumBanner) premiumBanner.classList.add('hidden');
+        if (activeBanner) activeBanner.classList.remove('hidden');
+    } else {
+        if (premiumBanner) premiumBanner.classList.remove('hidden');
+        if (activeBanner) activeBanner.classList.add('hidden');
+    }
+}
+
+// Check premium status on load
+function checkPremiumStatus() {
+    const isPremium = localStorage.getItem('isPremium') === 'true';
+    appState.isPremium = isPremium;
+    updatePremiumBanners();
 }

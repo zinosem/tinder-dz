@@ -1,6 +1,6 @@
 /* ========================================
    LoveDZ - Application de Rencontres Algérie
-   Styles CSS Complets
+   Styles CSS Complets - Optimisé iOS/iPhone
    ======================================== */
 
 /* Reset & Base Styles */
@@ -8,6 +8,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
 }
 
 :root {
@@ -39,14 +41,29 @@
     --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
     --border-radius: 16px;
     --border-radius-lg: 24px;
+    
+    /* Safe areas for iPhone notch */
+    --safe-area-top: env(safe-area-inset-top, 20px);
+    --safe-area-bottom: env(safe-area-inset-bottom, 20px);
+    --safe-area-left: env(safe-area-inset-left, 0px);
+    --safe-area-right: env(safe-area-inset-right, 0px);
+}
+
+html {
+    height: -webkit-fill-available;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: var(--bg-secondary);
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior-y: contain;
 }
 
 /* ========================================
@@ -485,6 +502,8 @@ body {
 
 .input-icon {
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .input-icon i:first-child {
@@ -493,18 +512,27 @@ body {
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-light);
+    z-index: 1;
+    pointer-events: none;
 }
 
 .input-icon input,
 .input-icon select {
     width: 100%;
-    padding: 14px 45px;
+    padding: 14px 15px 14px 45px;
     border: 2px solid #e9ecef;
     border-radius: 12px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px; /* 16px prevents iOS zoom on focus */
     transition: all 0.3s ease;
     background: var(--white);
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Password input with toggle button - more padding on the right */
+.input-password input {
+    padding-right: 50px;
 }
 
 .input-icon input:focus,
@@ -516,13 +544,24 @@ body {
 
 .toggle-password {
     position: absolute;
-    right: 15px;
+    right: 12px;
     top: 50%;
     transform: translateY(-50%);
     background: none;
     border: none;
     color: var(--text-light);
     cursor: pointer;
+    padding: 8px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.toggle-password:active {
+    color: var(--primary);
 }
 
 .forgot-password {
@@ -3303,4 +3342,228 @@ body {
     font-size: 11px;
     opacity: 0.6;
     padding-bottom: 20px;
+}
+/* ========================================
+   Premium Active Banner (when subscribed)
+   ======================================== */
+.premium-active-banner {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+    padding: 18px 20px;
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(245, 175, 25, 0.3);
+}
+
+.premium-active-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    animation: crownPulse 2s ease-in-out infinite;
+}
+
+@keyframes crownPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.premium-active-text h3 {
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.premium-active-text p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 13px;
+}
+
+/* ========================================
+   iOS/iPhone Optimizations
+   ======================================== */
+
+/* Safe area padding for pages */
+.page {
+    padding-top: var(--safe-area-top);
+    padding-bottom: var(--safe-area-bottom);
+}
+
+/* Better touch targets for iOS */
+button, .btn, a {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Fix iOS bounce scroll */
+.app-container,
+.chat-container,
+.likes-container,
+.messages-container {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+}
+
+/* Prevent text selection on interactive elements */
+.card, .action-btn, .nav-item, .message-item, .like-card {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Fix iOS input styles */
+input, select, textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 12px;
+}
+
+/* Fix iOS button tap delay */
+button {
+    touch-action: manipulation;
+}
+
+/* Bottom navigation safe area for iPhone */
+.bottom-nav {
+    padding-bottom: calc(10px + var(--safe-area-bottom));
+}
+
+/* Header safe area */
+.app-header,
+.chat-header,
+.likes-header,
+.messages-header {
+    padding-top: calc(15px + var(--safe-area-top));
+}
+
+/* Smooth momentum scrolling */
+.card-stack,
+.chat-messages,
+.likes-grid,
+.messages-list {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Fix position fixed for iOS */
+.modal-overlay,
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* Improve form experience on iOS */
+.auth-container {
+    padding: calc(20px + var(--safe-area-top)) 20px calc(20px + var(--safe-area-bottom));
+}
+
+/* Responsive adjustments for smaller iPhones */
+@media screen and (max-width: 375px) {
+    .splash-content h1 {
+        font-size: 36px;
+    }
+    
+    .auth-card {
+        padding: 25px 20px;
+    }
+    
+    .action-buttons .action-btn.primary {
+        width: 65px;
+        height: 65px;
+    }
+    
+    .action-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .card-info h2 {
+        font-size: 22px;
+    }
+    
+    .premium-plan {
+        padding: 12px 10px;
+    }
+}
+
+/* iPhone SE and older */
+@media screen and (max-width: 320px) {
+    .landing-nav {
+        padding: 15px 10px;
+    }
+    
+    .nav-buttons .btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .hero-content h1 {
+        font-size: 28px;
+    }
+    
+    .stats {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* iPhone Pro Max and larger displays */
+@media screen and (min-width: 428px) {
+    .card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .auth-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+/* Landscape mode adjustments */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    .splash-content h1 {
+        font-size: 32px;
+    }
+    
+    .logo-animation {
+        font-size: 50px;
+    }
+    
+    .card-stack {
+        height: calc(100vh - 180px);
+    }
+}
+
+/* Dark mode support for iOS */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-secondary: #1a1a2e;
+        --bg-primary: #16213e;
+        --text-primary: #ffffff;
+        --text-secondary: #b2bec3;
+    }
+    
+    .auth-card,
+    .message-item,
+    .like-card {
+        background: var(--bg-primary);
+    }
+    
+    .input-icon input,
+    .input-icon select {
+        background: var(--bg-secondary);
+        border-color: #2d3748;
+        color: var(--text-primary);
+    }
 }
