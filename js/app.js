@@ -343,6 +343,11 @@ function generateCards() {
     
     // Initialiser le swipe sur la carte du dessus
     initializeSwipe();
+    
+    // Setup image navigation on cards
+    document.querySelectorAll('.swipe-card').forEach(card => {
+        setupCardImageNavigation(card);
+    });
 }
 
 function createCard(profile, isTop) {
@@ -419,8 +424,192 @@ function shareProfile(profileId) {
     showToast('Lien copié! 📋');
 }
 
+// ========================================
+// Profile Detail Modal
+// ========================================
+let currentDetailProfile = null;
+let currentImageIndex = 0;
+
 function expandProfile(profileId) {
-    showToast('Profil complet bientôt disponible! 👀');
+    const profile = appState.profiles.find(p => p.id === profileId);
+    if (!profile) return;
+    
+    currentDetailProfile = profile;
+    currentImageIndex = 0;
+    
+    // Populate modal
+    document.getElementById('detail-name').textContent = `${profile.name}, ${profile.age}`;
+    document.getElementById('detail-location').textContent = profile.location;
+    document.getElementById('detail-distance').textContent = `${Math.floor(Math.random() * 20) + 1} km`;
+    document.getElementById('detail-bio').textContent = profile.bio;
+    
+    // Generate images
+    const imagesContainer = document.getElementById('profile-detail-images');
+    const dotsContainer = document.getElementById('gallery-dots');
+    
+    const colors = [profile.gradient, 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'];
+    
+    imagesContainer.innerHTML = colors.map((color, i) => `
+        <div class="profile-detail-image" style="background: ${color}">
+            <i class="fas fa-user"></i>
+        </div>
+    `).join('');
+    
+    dotsContainer.innerHTML = colors.map((_, i) => `
+        <div class="gallery-dot ${i === 0 ? 'active' : ''}" onclick="goToProfileImage(${i})"></div>
+    `).join('');
+    
+    // Generate interests
+    const interestsContainer = document.getElementById('detail-interests');
+    interestsContainer.innerHTML = profile.interests.map(interest => 
+        `<span class="detail-interest">${interest}</span>`
+    ).join('');
+    
+    // Show modal
+    document.getElementById('profile-detail-modal').classList.remove('hidden');
+}
+
+function closeProfileDetail() {
+    document.getElementById('profile-detail-modal').classList.add('hidden');
+    currentDetailProfile = null;
+}
+
+function prevProfileImage() {
+    const images = document.querySelectorAll('.profile-detail-image');
+    const dots = document.querySelectorAll('.gallery-dot');
+    
+    if (currentImageIndex > 0) {
+        currentImageIndex--;
+        updateProfileGallery(images, dots);
+    }
+}
+
+function nextProfileImage() {
+    const images = document.querySelectorAll('.profile-detail-image');
+    const dots = document.querySelectorAll('.gallery-dot');
+    
+    if (currentImageIndex < images.length - 1) {
+        currentImageIndex++;
+        updateProfileGallery(images, dots);
+    }
+}
+
+function goToProfileImage(index) {
+    const images = document.querySelectorAll('.profile-detail-image');
+    const dots = document.querySelectorAll('.gallery-dot');
+    
+    currentImageIndex = index;
+    updateProfileGallery(images, dots);
+}
+
+function updateProfileGallery(images, dots) {
+    images.forEach((img, i) => {
+        img.style.transform = `translateX(-${currentImageIndex * 100}%)`;
+    });
+    
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentImageIndex);
+    });
+}
+
+// ========================================
+// Card Image Navigation
+// ========================================
+function setupCardImageNavigation(card) {
+    const cardImage = card.querySelector('.card-image');
+    if (!cardImage) return;
+    
+    // Create navigation areas
+    const navArea = document.createElement('div');
+    navArea.className = 'card-image-nav';
+    navArea.innerHTML = `
+        <div class="card-image-nav-area" data-dir="prev"></div>
+        <div class="card-image-nav-area" data-dir="next"></div>
+    `;
+    cardImage.appendChild(navArea);
+    
+    let cardImageIndex = 0;
+    const dots = card.querySelectorAll('.card-image-dot');
+    const totalImages = dots.length;
+    
+    navArea.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const dir = e.target.dataset.dir;
+        
+        if (dir === 'prev' && cardImageIndex > 0) {
+            cardImageIndex--;
+        } else if (dir === 'next' && cardImageIndex < totalImages - 1) {
+            cardImageIndex++;
+        }
+        
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === cardImageIndex);
+        });
+    });
+}
+
+// ========================================
+// Settings Functions
+// ======================================== 
+function showSettings() {
+    document.getElementById('settings-modal').classList.remove('hidden');
+}
+
+function closeSettings() {
+    document.getElementById('settings-modal').classList.add('hidden');
+}
+
+function changeEmail() {
+    const newEmail = prompt('Entrez votre nouvel email:');
+    if (newEmail && newEmail.includes('@')) {
+        showToast('Email mis à jour! ✉️');
+    }
+}
+
+function changePassword() {
+    const currentPass = prompt('Mot de passe actuel:');
+    if (currentPass) {
+        const newPass = prompt('Nouveau mot de passe:');
+        if (newPass && newPass.length >= 6) {
+            showToast('Mot de passe mis à jour! 🔐');
+        } else {
+            showToast('Le mot de passe doit contenir au moins 6 caractères');
+        }
+    }
+}
+
+function changePhone() {
+    const phone = prompt('Entrez votre numéro de téléphone:');
+    if (phone) {
+        showToast('Numéro de téléphone mis à jour! 📱');
+    }
+}
+
+function manageBlockedUsers() {
+    showToast('Aucun utilisateur bloqué');
+}
+
+function showHelp() {
+    showToast('Centre d\'aide bientôt disponible');
+}
+
+function contactSupport() {
+    showToast('Email: support@lovedz.com');
+}
+
+function showPrivacyPolicy() {
+    showToast('Politique de confidentialité bientôt disponible');
+}
+
+function deleteAccount() {
+    if (confirm('Es-tu sûr de vouloir supprimer ton compte? Cette action est irréversible.')) {
+        if (confirm('Dernière confirmation: supprimer définitivement ton compte?')) {
+            showToast('Compte supprimé. Au revoir! 👋');
+            setTimeout(() => {
+                logout();
+            }, 2000);
+        }
+    }
 }
 
 // ========================================
@@ -1118,10 +1307,6 @@ function initializeEventListeners() {
             distanceDisplay.textContent = `${distance.value} km`;
         });
     }
-}
-
-function showSettings() {
-    showToast('Paramètres bientôt disponibles! ⚙️');
 }
 
 function showNotifications() {
