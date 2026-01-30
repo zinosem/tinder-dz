@@ -1588,24 +1588,27 @@ body {
 
 .messages-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 15px 20px;
     background: var(--white);
     border-bottom: none;
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    gap: 15px;
 }
 
 .messages-header h1 {
-    font-size: 24px;
+    flex: 1;
+    font-size: 22px;
     font-weight: 700;
     background: var(--gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-align: center;
+    margin-right: 45px; /* Compensate for back button to center title */
 }
 
 .btn-search {
@@ -2857,6 +2860,7 @@ body {
 .likes-header h1 {
     font-size: 20px;
     flex: 1;
+    text-align: center;
 }
 
 .likes-count-badge {
@@ -3545,4 +3549,4 @@ button {
     }
 }
 
-/* Dark mode désactivé */
+/* Dark mode dï¿½sactivï¿½ */
